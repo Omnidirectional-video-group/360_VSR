@@ -1,0 +1,7 @@
+codecarbon==2.1.4
+numpy==1.24.1
+openpyxl==3.0.10
+psutil==5.9.4
+pynvml==11.4.1
+selenium==4.7.2
+sty==1.0.4
