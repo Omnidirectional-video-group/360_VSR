@@ -1,15 +1,22 @@
+---
+runme:
+  id: 01HNA3T4Y0XH3J4YDF03YCTW16
+  version: v2.2
+---
 
 # ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
 
 <!-- <img title="" src="/imgs/mark.png" alt="" data-align="center"> -->
 
+
+
 <div align="center">
-  <img src="imgs/logo3.png" height=128>
-  <p>&#10006</p>
-  <img src="imgs/tii-logo.jpg" height=128>
+  <img src="imgs/logo3.png" height="128">
+  <span style="font-size: 32px; margin: 0 10px;">×</span>
+  <img src="imgs/tii-logo.jpg" height="128">
 </div>
 
-360° Video Super-Resolution and Quality Enhancement Challenge is held as a part of the **[ICIP2024](https://2024.ieeeicip.org/)** sponsored by **[TII](https://www.tii.ae/)**.
+360° Video Super-Resolution and Quality Enhancement Challenge is held as a part of the **[ICIP2024 conference](https://2024.ieeeicip.org/)** sponsored by **[TII](https://www.tii.ae/)**.
 
 <div align="center">
 
@@ -32,13 +39,13 @@
 - ✅ 2024.03.18 Final test data release (inputs only)
 - ✅ 2024.03.22 test result submission deadline
 - ✅ 2024.03.22 fact sheet / code / model submission deadline
-- ✅ 2024.04.01 Final test results release to the participants and winner announcement 
+- ✅ 2024.04.01 Final test results release to the participants and winner announcement
 - ✅ 2024.04.21 challenge paper submission deadline
-- ✅ 2024.10.27 workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu DHabi, UAE) 
+- ✅ 2024.10.27 workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu DHabi, UAE)
 
 ## Introduction
 
-Omnidirectional visual content, commonly referred to as 360-degree images and videos, has garnered significant interest in both academia and industry, establishing itself as the primary media modality for VR/XR applications. 360-degree videos offer numerous features and advantages, allowing users to view scenes in all directions, providing an immersive quality of experience with up to 3 degrees of freedom (3DoF). When integrated on embedded devices with remote control, 360-degree videos offer additional degrees of freedom, enabling movement within the space (6DoF). However, 360-degree videos come with specific requirements, such as high-resolution content with up to 16K video resolution to ensure a high-quality representation of the scene. Moreover, limited bandwidth in wireless communication, especially under mobility conditions, imposes strict constraints on the available throughput to prevent packet loss and maintain low end-to-end latency. Adaptive resolution and efficient compression of 360-degree video content can address these challenges by adapting to the available throughput while maintaining high video quality at the decoder. Nevertheless, the downscaling and coding of the original content before transmission introduces visible distortions and loss of information details that cannot be recovered at the decoder side. In this context, machine learning techniques have demonstrated outstanding performance in alleviating coding artifacts and recovering lost details, particularly for 2D video. Compared to 2D video, 360-degree video presents a lower angular resolution issue, requiring augmentation of both the resolution and the quality of the video. 
+Omnidirectional visual content, commonly referred to as 360-degree images and videos, has garnered significant interest in both academia and industry, establishing itself as the primary media modality for VR/XR applications. 360-degree videos offer numerous features and advantages, allowing users to view scenes in all directions, providing an immersive quality of experience with up to 3 degrees of freedom (3DoF). When integrated on embedded devices with remote control, 360-degree videos offer additional degrees of freedom, enabling movement within the space (6DoF). However, 360-degree videos come with specific requirements, such as high-resolution content with up to 16K video resolution to ensure a high-quality representation of the scene. Moreover, limited bandwidth in wireless communication, especially under mobility conditions, imposes strict constraints on the available throughput to prevent packet loss and maintain low end-to-end latency. Adaptive resolution and efficient compression of 360-degree video content can address these challenges by adapting to the available throughput while maintaining high video quality at the decoder. Nevertheless, the downscaling and coding of the original content before transmission introduces visible distortions and loss of information details that cannot be recovered at the decoder side. In this context, machine learning techniques have demonstrated outstanding performance in alleviating coding artifacts and recovering lost details, particularly for 2D video. Compared to 2D video, 360-degree video presents a lower angular resolution issue, requiring augmentation of both the resolution and the quality of the video.
 
 In this challenge, we aim to establish high-quality benchmarks for 360° video SR, and expect to further highlight the challenges and research problems. This challenge presents an opportunity for the scientific research and industrial community to propose solutions for quality enhancement and super-resolution for 360-degree videos.
 
@@ -46,7 +53,7 @@ In this challenge, we aim to establish high-quality benchmarks for 360° video S
 
 Only the training and validation sets will be released **during the first phase (model construction period)**, and the HR and four LR 360° videos encoded at 4 different target bitrates using HEVC video encoder are available for the two tracks. The participants can design their methods by considering the characteristics of 360° videos. Then these models can be trained on the training set and evaluated on the validation set. Note that the participants can use additional data.
 
-**During the second phase (testing period)**, the testing set containing only LR 360° videos encoded at the same traget bitrate with hevc encoder will be released. The participants can use the testing LR videos with their trained models. The results, in the format mentionned [here](#github_link), should be submitted by the participants and then evaluated by the organizers with the quantitative metrics. The final score is communicated to participant on the submission portal based only on [PSNR](#psnr) and model complexity, as explained in the formula [here](#final_score).
+__During the second phase (testing period)__, the testing set containing only LR 360° videos encoded at the same traget bitrate with hevc encoder will be released. The participants can use the testing LR videos with their trained models. The results, in the format mentionned [here](#github_link), should be submitted by the participants and then evaluated by the organizers with the quantitative metrics. The final score is communicated to participant on the submission portal based only on [PSNR](#psnr) and model complexity, as explained in the formula [here](#final_score).
 
 ### ● Dataset - 360 VISTA-SR
 
@@ -70,7 +77,7 @@ Unlike previous settings that directly apply bicubic downsampling to generate lo
 
 We evaluate the super-resolved 360° images by comparing them to the ground truth HR ERP images. To measure the fidelity, we adopt the widely used Weighted-to-Spherically-uniform Peak Signal to Noise Ratio (WS-PSNR) as the quantitative evaluation metric.
 
-## Track 2：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
+## Track 1：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
 
 ## Track 2：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X2)
 
@@ -87,7 +94,7 @@ We use CodaLab for online submission in the development phase. Here, we provide 
 - 2024.03.22 fact sheet / code / model submission deadline
 - 2024.04.01 Final test results release to the participants and winner announcement
 - 2024.04.21 challenge paper submission deadline
-- 2024.10.27 workshop days, results and award ceremony (ICIP 2024, Abu DHabi, UAE) 
+- 2024.10.27 workshop days, results and award ceremony (ICIP 2024, Abu DHabi, UAE)
 
 ## Scripts
 
@@ -107,9 +114,9 @@ We provide some useful scripts:
 
 ### Organizers
 
-Ahmed Telili 
+Ahmed Telili
 Ibrahim Farhat
-Wessim Hamidouche 
+Wessim Hamidouche
 Hadi Amirpour
 
 #### Acknowledgement
