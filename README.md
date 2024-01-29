@@ -85,23 +85,11 @@ We evaluate the super-resolved 360° images by comparing them to the ground trut
 
 We use CodaLab for online submission in the development phase. Here, we provide an example (TBD) to help participants to format their submissions. In the test phase, the final results and the source codes (both training and test) need to be submitted. Please refer to our [online website](https://github.com/360SR/360SR-Challenge) for details of the submission rules.
 
-## Important Dates
-
-- 2024.01.30 Release of train data (input and output images) and validation data (inputs only)
-- 2024.01.30 Validation server online
-- 2024.03.18 Final test data release (inputs only)
-- 2024.03.22 test result submission deadline
-- 2024.03.22 fact sheet / code / model submission deadline
-- 2024.04.01 Final test results release to the participants and winner announcement
-- 2024.04.21 challenge paper submission deadline
-- 2024.10.27 workshop days, results and award ceremony (ICIP 2024, Abu DHabi, UAE)
-
 ## Scripts
 
 We provide some useful scripts:
 
 - WS-PSNR evaluation
-- sub-image cropping
 - dataset loader
 
 ## FAQ
