@@ -1,10 +1,12 @@
-
+---
+runme:
+  id: 01HNACGY03SJ56MT22NQZ55BX0
+  version: v2.2
+---
 
 # ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
 
 <!-- <img title="" src="/imgs/mark.png" alt="" data-align="center"> -->
-
-
 
 <div align="center">
   <img src="imgs/logo3.png" height="128">
@@ -52,6 +54,10 @@ Only the training and validation sets will be released **during the first phase 
 __During the second phase (testing period)__, the testing set containing only LR 360° videos encoded at the same traget bitrate with hevc encoder will be released. The participants can use the testing LR videos with their trained models. The results, in the format mentionned [here](#github_link), should be submitted by the participants and then evaluated by the organizers with the quantitative metrics. The final score is communicated to participant on the submission portal based only on [PSNR](#psnr) and model complexity, as explained in the formula [here](#final_score).
 
 ### ● Dataset - 360 VISTA-SR
+
+<div align="center">
+  <img src="imgs/vista.png" height="128">
+</div>
 
 We provide a dataset containing 200 360-degree videos, predominantly sourced from YouTube and ODV360 (Link) characterized by high quality and resolution (4K and 2K) in ERP format. All videos are licensed under Creative Commons Attribution (reuse allowed), and our dataset is exclusively designed for academic and research purposes. The video dataset encompasses various content characteristics, including outdoor and indoor scenes, as well as high motion sport contents. Each video consists of 100 frames. The dataset is partitioned into 170 videos for training, 15 for validation, and 15 for testing. Note that additional external content can be incorporated for training.
 
