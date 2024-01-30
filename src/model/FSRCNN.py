@@ -1,3 +1,18 @@
+"""
+Module Description:
+ 
+This script ....
+ 
+ 
+Author:
+ 
+Ahmed Telili
+ 
+Date Created:
+ 
+29 01 2024
+ 
+"""
 from math import sqrt
 import torch
 from torch import nn

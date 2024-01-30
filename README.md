@@ -1,9 +1,15 @@
+---
+runme:
+  id: 01HNCN615Y0JF0GCXA9KKFKKQR
+  version: v2.2
+---
 
 # ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
+
 <!-- <img title="" src="/imgs/mark.png" alt="" data-align="center"> -->
 
 <div align="center">
-  <img src="imgs/logo4.png" height="128">
+  <img src="imgs/logo.png" height="128">
   <span style="font-size: 32px; margin: 0 10px;">×</span>
   <img src="imgs/tii-logo.jpg" height="128">
 </div>
