@@ -1,10 +1,4 @@
----
-runme:
-  id: 01HNACGY03SJ56MT22NQZ55BX0
-  version: v2.2
----
 
-# ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
 
 <!-- <img title="" src="/imgs/mark.png" alt="" data-align="center"> -->
 
