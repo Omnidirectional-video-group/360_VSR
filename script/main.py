@@ -1,3 +1,18 @@
+"""
+Module Description:
+ 
+This script ....
+ 
+ 
+Author:
+ 
+Ahmed Telili
+ 
+Date Created:
+ 
+29 01 2024
+ 
+"""
 import argparse
 import pathlib
 import yaml

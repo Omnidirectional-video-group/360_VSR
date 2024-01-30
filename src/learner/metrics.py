@@ -1,9 +1,17 @@
 """
+Module Description:
+ 
+This script ....
+ 
+ 
 Author:
-    Ahmed Telili, Research Engineer @ Technology Innovation Institute (TII)
-
-Description:
-    This script, developed and maintained by Ahmed Telili, is part of a challenge focused on super-resolution sponsored by TII. For any queries or contributions regarding this script, please contact ahmed.telili@tii.ae.
+ 
+Ahmed Telili
+ 
+Date Created:
+ 
+29 01 2024
+ 
 """
 
 import torch
