@@ -1,8 +1,4 @@
----
-runme:
-  id: 01HND86D3N09PWF8M57XTA7G05
-  version: v2.2
----
+
 
 # ICIP 2024 Video Super Resolution and Quality Enhancement challenge: Frame work usage
 
