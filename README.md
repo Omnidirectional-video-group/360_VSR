@@ -1,3 +1,8 @@
+---
+runme:
+  id: 01HND5G13HRZJ06Y16X9TCM4BN
+  version: v2.2
+---
 
 # ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
 
@@ -15,7 +20,7 @@
 
 📕[__Datasets__](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ)  __|__ 📝[Evaluation Script](https://github.com/360SR/360SR-Challenge/blob/main/scripts/cal_ws_metrics.py) __|__ 🧑‍🤝‍🧑[WhatsApp group](https://chat.whatsapp.com/GPy6gBmVbNcC7epkp0t2lW)
 
-⏬[Submission format example](#githublink)
+⏬[Submission example](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR)
 
 </div>
 
@@ -46,7 +51,7 @@ In this challenge, we aim to establish high-quality benchmarks for 360° video S
 
 Only the training and validation sets will be released **during the first phase (model construction period)**, and the HR and four LR 360° videos encoded at 4 different target bitrates using HEVC video encoder are available for the two tracks. The participants can design their methods by considering the characteristics of 360° videos. Then these models can be trained on the training set and evaluated on the validation set. Note that the participants can use additional data.
 
-__During the second phase (testing period)__, the testing set containing only LR 360° videos encoded at the same traget bitrate with hevc encoder will be released. The participants can use the testing LR videos with their trained models. The results, in the format mentionned [here](#github_link), should be submitted by the participants and then evaluated by the organizers with the quantitative metrics. The final score is communicated to participant on the submission portal based only on [PSNR](#psnr) and model complexity, as explained in the formula [here](#final_score).
+__During the second phase (testing period)__, the testing set containing only LR 360° videos encoded at the same traget bitrate with hevc encoder will be released. The participants can use the testing LR videos with their trained models. The results, in the format mentionned [Here](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR), should be submitted by the participants and then evaluated by the organizers with the quantitative metrics. The final score is communicated to participant on the submission portal based only on quality result and model complexity.
 
 ### ● Dataset - 360 VISTA-SR ([Download](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ))
 
@@ -58,22 +63,21 @@ We provide a dataset containing 200 360-degree videos, predominantly sourced fro
 | Number  | 100                           | 20                    | 20                   |
 | Storage | 76.7G (HR) + 103.68G (LR)     | ?M (HR) + 3.51G (LR)  | ?M (HR) + ?M (LR)    |
 
-### ● Settings
-
-Unlike previous settings that directly apply bicubic downsampling to generate low-resolution (LR) ERP images, we design a more realistic way to generate LR ERP images by considering the real acquisition process of 360° images. Since raw 360° images are captured by fisheye lens and are then saved as fisheye formats, thus performing degradations on fisheye images is more realistic and reasonable.
-
 **Note that we do not provide degradation scripts during this challenge to avoid potential testing data leakage.**
 
 ### ● Metrics
 
-We evaluate the super-resolved 360° videos by comparing them to the ground truth HR ERP videos. To measure the fidelity, we adopt the widely used Weighted-to-Spherically-uniform Peak Signal to Noise Ratio (WS-PSNR) as the quantitative evaluation metric. In addition to quality metric, we add run time complexity in the final score equation so that models that have the best trade-off between quality and speed are enphasised more. Detailed description are found on the official website [here](#website)
+We evaluate the super-resolved 360° videos by comparing them to the ground truth HR ERP videos. To measure the fidelity, we adopt the widely used Weighted-to-Spherically-uniform Peak Signal to Noise Ratio (WS-PSNR) as the quantitative evaluation metric. Moreover, we incorporate runtime complexity into our final scoring formula. Therefore, models that optimally balance between quality and processing efficiency are highlight more. For more details, please refer to the detailed descriptions available on the official website [here](#website).
 
-## Tracks: 
+## Tracks
+
 #### Track 1：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
 
 This track aims To significantly enhance the resolution and overall quality of 360° omnidirectional videos, targeting a 4x improvement in clarity and detail. Participants are required to develop algorithms or systems that can effectively upscale 360° omnidirectional videos by a factor of four (X4), while also improving their overall visual quality. The challenge involves addressing common issues such as blurring, distortions, and artifacts typical in panoramic content. In addition to this, run time complexity is also considered for the final score.
+
 #### Track 2：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X2)
-This track is dedicated to achieving a remarkable enhancement in both resolution and overall quality of 360° omnidirectional videos, aiming for a substantial 2x improvement in clarity and detail. Participants are challenged to innovate and develop sophisticated algorithms or systems capable of effectively upscaling 360° omnidirectional videos by a factor of two (X2). The goal is not only to magnify the resolution but also to significantly enhance the visual quality, addressing prevalent issues such as blurring, distortions, and artifacts commonly associated with panoramic content. Moreover, unlike the first track, this challenge puts a strong emphasis on the efficiency of the proposed solutions. Runtime complexity will be a crucial factor in the evaluation process, ensuring that the enhancements are not just effective, but also practical. Models demonstrating slower performance will be penalized, incentivizing participants to strike an optimal balance between quality improvement and computational efficiency. 
+
+This track is dedicated to achieving a remarkable enhancement in both resolution and overall quality of 360° omnidirectional videos, aiming for a substantial 2x improvement in clarity and detail. Participants are challenged to innovate and develop sophisticated algorithms or systems capable of effectively upscaling 360° omnidirectional videos by a factor of two (X2). The goal is not only to magnify the resolution but also to significantly enhance the visual quality, addressing prevalent issues such as blurring, distortions, and artifacts commonly associated with panoramic content. Moreover, unlike the first track, this challenge puts a strong emphasis on the efficiency of the proposed solutions. Runtime complexity will be a crucial factor in the evaluation process, ensuring that the enhancements are not just effective, but also practical. Models demonstrating slower performance will be penalized, incentivizing participants to strike an optimal balance between quality improvement and computational efficiency.
 
 ## Submission
 
