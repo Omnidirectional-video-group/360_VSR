@@ -1,3 +1,8 @@
+---
+runme:
+  id: 01HND5G13HRZJ06Y16X9TCM4BN
+  version: v2.2
+---
 
 # ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
 
@@ -13,9 +18,9 @@
 
 <div align="center">
 
-📕[__Datasets__](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ)  __|__ 📝[Evaluation Script](https://github.com/360SR/360SR-Challenge/blob/main/scripts/cal_ws_metrics.py) __|__ 🧑‍🤝‍🧑[Discord group](#discordgroup)
+📕[__Datasets__](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ)  __|__ 📝[Evaluation Script](https://github.com/360SR/360SR-Challenge/blob/main/scripts/cal_ws_metrics.py) __|__ 🧑‍🤝‍🧑[WhatsApp group](https://chat.whatsapp.com/GPy6gBmVbNcC7epkp0t2lW)
 
-⏬[factsheet template and guidelines for the final submission](https://github.com/360SR/360SR-Challenge/raw/main/CVPR-NTIRE%202023%20360%C2%B0%20Omnidirectional%20Super-Resolution%20Challenge%20Factsheet.zip)
+⏬[Submission format example](#githublink)
 
 </div>
 
@@ -48,17 +53,15 @@ Only the training and validation sets will be released **during the first phase 
 
 __During the second phase (testing period)__, the testing set containing only LR 360° videos encoded at the same traget bitrate with hevc encoder will be released. The participants can use the testing LR videos with their trained models. The results, in the format mentionned [here](#github_link), should be submitted by the participants and then evaluated by the organizers with the quantitative metrics. The final score is communicated to participant on the submission portal based only on [PSNR](#psnr) and model complexity, as explained in the formula [here](#final_score).
 
-### ● Dataset - 360 VISTA-SR
+### ● Dataset - 360 VISTA-SR ([Download](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ))
 
 We provide a dataset containing 200 360-degree videos, predominantly sourced from YouTube and ODV360 (Link) characterized by high quality and resolution (4K and 2K) in ERP format. All videos are licensed under Creative Commons Attribution (reuse allowed), and our dataset is exclusively designed for academic and research purposes. The video dataset encompasses various content characteristics, including outdoor and indoor scenes, as well as high motion sport contents. Each video consists of 100 frames. The dataset is partitioned into 170 videos for training, 15 for validation, and 15 for testing. Note that additional external content can be incorporated for training.
 
-|         | Training              | Validation            | Testing              |
-| ------- | --------------------- | --------------------- | -------------------- |
-| Source  | Youtube+ODV360        | Youtube+ODV360        | Youtube+ODV360       |
-| Number  | 100                   | 20                    | 20                   |
-| Storage | ?G (HR) + ?M (LR)     | ?M (HR) + ?M (LR)     | ?M (HR) + ?M (LR)    |
-
-### ● [Download](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ)
+|         | Training                      | Validation            | Testing              |
+| ------- | ---------------------         | --------------------- | -------------------- |
+| Source  | Youtube+ODV360                | Youtube+ODV360        | Youtube+ODV360       |
+| Number  | 100                           | 20                    | 20                   |
+| Storage | 76.7G (HR) + 103.68G (LR)     | ?M (HR) + 3.51G (LR)  | ?M (HR) + ?M (LR)    |
 
 ### ● Settings
 
@@ -68,22 +71,26 @@ Unlike previous settings that directly apply bicubic downsampling to generate lo
 
 ### ● Metrics
 
-We evaluate the super-resolved 360° images by comparing them to the ground truth HR ERP images. To measure the fidelity, we adopt the widely used Weighted-to-Spherically-uniform Peak Signal to Noise Ratio (WS-PSNR) as the quantitative evaluation metric.
+We evaluate the super-resolved 360° videos by comparing them to the ground truth HR ERP videos. To measure the fidelity, we adopt the widely used Weighted-to-Spherically-uniform Peak Signal to Noise Ratio (WS-PSNR) as the quantitative evaluation metric. In addition to quality metric, we add run time complexity in the final score equation so that models that have the best trade-off between quality and speed are enphasised more. Detailed description are found on the official website [here](#website)
 
-## Track 1：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
+## Tracks: 
+#### Track 1：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
 
-## Track 2：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X2)
+This track aims To significantly enhance the resolution and overall quality of 360° omnidirectional videos, targeting a 4x improvement in clarity and detail. Participants are required to develop algorithms or systems that can effectively upscale 360° omnidirectional videos by a factor of four (X4), while also improving their overall visual quality. The challenge involves addressing common issues such as blurring, distortions, and artifacts typical in panoramic content. In addition to this, run time complexity is also considered for the final score.
+#### Track 2：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X2)
+This track is dedicated to achieving a remarkable enhancement in both resolution and overall quality of 360° omnidirectional videos, aiming for a substantial 2x improvement in clarity and detail. Participants are challenged to innovate and develop sophisticated algorithms or systems capable of effectively upscaling 360° omnidirectional videos by a factor of two (X2). The goal is not only to magnify the resolution but also to significantly enhance the visual quality, addressing prevalent issues such as blurring, distortions, and artifacts commonly associated with panoramic content. Moreover, unlike the first track, this challenge puts a strong emphasis on the efficiency of the proposed solutions. Runtime complexity will be a crucial factor in the evaluation process, ensuring that the enhancements are not just effective, but also practical. Models demonstrating slower performance will be penalized, incentivizing participants to strike an optimal balance between quality improvement and computational efficiency. 
 
 ## Submission
 
-We use CodaLab for online submission in the development phase. Here, we provide an example (TBD) to help participants to format their submissions. In the test phase, the final results and the source codes (both training and test) need to be submitted. Please refer to our [online website](https://github.com/360SR/360SR-Challenge) for details of the submission rules.
+We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, the final results and the source codes (both training and test) need to be submitted. Please refer to our [online website](icip24-video360sr.ae) for details of the submission rules.
 
 ## Scripts
 
-We provide some useful scripts:
+Along with the dataset, we provide scripts to assist participants in developing their models and replicating baseline results.
 
-- WS-PSNR evaluation
-- dataset loader
+- [qaulity assessment](script/quality_assessment.py): provides methods that computes different quality metrics such as psnr and ssim.
+- [dataset preparations](src/dataset/): examples to build and prepare the dataset for training and testing.
+- [FSRCNN](src/model/FSRCNN.py): Provides an example baseline model based on Fast Super Resolution CNN
 
 ## FAQ
 
@@ -104,4 +111,8 @@ Hadi Amirpour
 
 We use the GitHub README.md template from [Stereo SR competition](https://github.com/The-Learning-And-Vision-Atelier-LAVA/Stereo-Image-SR/tree/NTIRE2022)
 
-## 🧑‍🤝‍🧑 Discord group
+## 🧑‍🤝‍🧑 WhatsApp group
+
+<div align="center">
+  <img src="imgs/WhatsApp.jpeg">
+</div>
