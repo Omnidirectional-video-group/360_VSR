@@ -53,11 +53,11 @@ __During the second phase (testing period)__, the testing set containing only LR
 
 We provide a dataset containing 200 360-degree videos, predominantly sourced from YouTube and ODV360 (Link) characterized by high quality and resolution (4K and 2K) in ERP format. All videos are licensed under Creative Commons Attribution (reuse allowed), and our dataset is exclusively designed for academic and research purposes. The video dataset encompasses various content characteristics, including outdoor and indoor scenes, as well as high motion sport contents. Each video consists of 100 frames. The dataset is partitioned into 170 videos for training, 15 for validation, and 15 for testing. Note that additional external content can be incorporated for training.
 
-|         | Training                      | Validation            | Testing              |
-| ------- | ---------------------         | --------------------- | -------------------- |
-| Source  | Youtube+ODV360                | Youtube+ODV360        | Youtube+ODV360       |
-| Number  | 100                           | 20                    | 20                   |
-| Storage | 76.7G (HR) + 103.68G (LR)     | ?M (HR) + 3.51G (LR)  | ?M (HR) + ?M (LR)    |
+|         | Training                      | Validation               | Testing                    |
+| ------- | ---------------------         | ------------------------ | -------------------------- |
+| Source  | Youtube+ODV360                | Youtube+ODV360           | Youtube+ODV360             |
+| Number  | 100                           | 20                       | 20                         |
+| Storage | 76.7G (HR) + 103.68G (LR)     | 10.6G (HR) + 14.3G (LR)  | 11.5G (HR) + 14.7G (LR)    |
 
 **Note that we do not provide degradation scripts during this challenge to avoid potential testing data leakage.**
 
@@ -153,12 +153,12 @@ learner:
 To train the model, use the following command:
 
 ```bash
-python run.py --process train --config_path config.yml
+python main.py --process train --config_path config.yml
 ```
 ### Test  
 To generate testing outputs, use the following command:
 ```bash
-python run.py --process test --config_path config.yml
+python main.py --process test --config_path config.yml
 ```
 ## FAQ
 
