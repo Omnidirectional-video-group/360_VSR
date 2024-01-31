@@ -79,14 +79,87 @@ This track is dedicated to achieving a remarkable enhancement in both resolution
 
 We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, the final results and the source codes (both training and test) need to be submitted. Please refer to our [online website](icip24-video360sr.ae) for details of the submission rules.
 
-## Scripts
+## Training and Validation
+### Requirement 
+Use pip to install all requirements:
+```bash
+pip install -r requirements.txt
+```
+### Configuration 
+Before training and testing, please make sure the fields in [config.yaml](src/config.yaml) is properly set.
+```yaml
+log_dir: "output/FSRCNN"  # Directory for logs and outputs
 
-Along with the dataset, we provide scripts to assist participants in developing their models and replicating baseline results.
+dataset:
+  train:
+    hr_root: "data/train/HR"
+    lr_root: "data/train/LR_X4"
+    lr_compression_levels: ["1", "2", "3", "4"]  # list for Compression levels directories
+    crop_size: 64 # The height and width of cropped patch for training.
+    transform: True # if True data augmentation is used
+    batch_size: 4 
+    shuffle: True
+    num_workers: 8 # number of cores used for data loader
+  val:
+    hr_root: "data/val/HR" 
+    lr_root: "data/val/LR_X4"
+    lr_compression_levels: ["1", "2", "3", "4"]
+    batch_size: 4
+    shuffle: False
+    num_workers: 1
+  test:
+    hr_root: ''
+    lr_root: "data/test/LR_X4"
+    lr_compression_levels: ["1"]
+    batch_size: 2
+    shuffle: False    
+    num_workers: 1                       
 
-- [qaulity assessment](script/quality_assessment.py): provides methods that computes different quality metrics such as psnr and ssim.
-- [dataset preparations](src/dataset/): examples to build and prepare the dataset for training and testing.
-- [FSRCNN](src/model/FSRCNN.py): Provides an example baseline model based on Fast Super Resolution CNN
+model:
+  path: "src/model/FSRCNN.py"   # Path to the model definition file
+  name: "FSRCNN" # Model class name to be instantiated
+  scale_factor: 4 # adjust the scale factor
 
+learner:
+  general:
+    total_steps: 3000000 # The number of training steps.
+    log_train_info_steps: 100 # The frequency of logging training info.
+    keep_ckpt_steps: 20000 # The frequency of saving checkpoint.
+    valid_steps: 5000 # The frequency of validation.
+    
+  optimizer: # Define the module name and setting of optimizer
+    name: "Adam"              
+    lr: 0.0001                 
+    beta_1: 0.9
+    beta_2: 0.999
+    
+  lr_scheduler: # Define the module name and setting of learning rate scheduler
+    name: "ExponentialDecay"
+    initial_learning_rate: 0.0001
+    decay_steps: 10000
+    decay_rate: 0.1
+    staircase: True
+    
+  saver: # The path to checkpoint where would be restored from.
+    restore: #checkpoints/step_308000_checkpoint_x4.pth.tar
+  loss:
+    name: "CharbonnierLoss"   # Type of loss function to use
+    params: {}                # Additional parameters for the loss function, if needed
+```
+
+
+
+### Train 
+To train the model, use the following command:
+
+```bash
+python run.py --process train --config_path config.yml
+```
+### Test  
+To generate testing outputs, use the following command:
+```bash
+python run.py --process test --config_path config.yml
+```
 ## FAQ
 
 1.  We do not restrict competitors from using additional training data. If it is used, it is necessary to indicate the source and amount.
@@ -105,6 +178,7 @@ Hadi Amirpour
 #### Acknowledgement
 
 We use the GitHub README.md template from [Stereo SR competition](https://github.com/The-Learning-And-Vision-Atelier-LAVA/Stereo-Image-SR/tree/NTIRE2022)
+We inspired the Framework template from [mai22-real-time-video-sr](https://github.com/MediaTek-NeuroPilot/mai22-real-time-video-sr/tree/main)
 
 ## 🧑‍🤝‍🧑 WhatsApp group
 

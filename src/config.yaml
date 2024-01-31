@@ -1,12 +1,10 @@
-
-
-log_dir: "first_model/"  # Directory for logs and outputs
+log_dir: "output/FSRCNN"  # Directory for logs and outputs
 
 dataset:
   train:
     hr_root: "data/train/HR"
     lr_root: "data/train/LR_X4"
-    lr_compression_levels: ["0.25M", "0.5M", "1M", "2M"]
+    lr_compression_levels: ["0.25M", "0.5M", "1M", "2M"]  # list for Compression levels directories
     crop_size: 64
     transform: True
     batch_size: 4
@@ -20,22 +18,23 @@ dataset:
     shuffle: False
     num_workers: 1
   test:
-    hr_root: "data/test/HR"
+    hr_root: ''
     lr_root: "data/test/LR_X4"
-    lr_compression_levels: ["0.25M", "0.5M", "1M", "2M"]
-    batch_size: 16
+    lr_compression_levels: ["1"]
+    batch_size: 2
     shuffle: False    
     num_workers: 1                       
 
 model:
-  path: "model/FSRCNN.py"   # Path to the model definition file
-  name: "FSRCNN"                     # Model class name to be instantiated
+  path: "src/model/FSRCNN.py"   # Path to the model definition file
+  name: "FSRCNN" # Model class name to be instantiated
+  scale_factor: 4 # adjust the scale factor
 
 learner:
   general:
-    total_steps: 1000
+    total_steps: 300000000
     log_train_info_steps: 100
-    keep_ckpt_steps: 300
+    keep_ckpt_steps: 3000
     valid_steps: 500
   optimizer:
     name: "Adam"               # Optimizer type
@@ -49,7 +48,7 @@ learner:
     decay_rate: 0.1
     staircase: True
   saver:
-    restore: step_236000_checkpoint.pth.tar
+    restore: #checkpoints/step_535000_checkpoint_X2_best.pth.tar
   loss:
     name: "CharbonnierLoss"   # Type of loss function to use
     params: {}                # Additional parameters for the loss function, if needed

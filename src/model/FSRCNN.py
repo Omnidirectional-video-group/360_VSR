@@ -1,16 +1,12 @@
 """
 Module Description:
  
-This script ....
+This script defines th FSRCNN model
  
- 
-Author:
- 
-Ahmed Telili
- 
-Date Created:
- 
-29 01 2024
+Original Author:
+    Lorna
+    Original Source: https://github.com/Lornatang/FSRCNN-PyTorch
+
  
 """
 from math import sqrt
@@ -62,7 +58,6 @@ class FSRCNN(nn.Module):
             (4, 4),
             (upscale_factor - 1, upscale_factor - 1)
         )
-
         # Initialize model weights.
         self._initialize_weights()
 

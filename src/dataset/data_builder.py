@@ -1,9 +1,8 @@
 """
 Module Description:
  
-This script ....
- 
- 
+This script build to the DataLoader
+
 Author:
  
 Ahmed Telili
@@ -14,15 +13,17 @@ Date Created:
  
 """
 
-from dataset.dataset import SuperResolutionDataset
+from src.dataset.dataset import SuperResolutionDataset
 from torch.utils.data import DataLoader
 
-def build_dataset(dataset_config):
+def build_dataset(dataset_config, model_config):
     """
     Build the dataset for training and testing.
 
     Args:
         dataset_config (dict): Configuration for the dataset.
+        model_config (dict): Configuration for the model.
+
     
     Returns:
         A dictionary containing 'train' and 'test' datasets.
@@ -34,6 +35,7 @@ def build_dataset(dataset_config):
         lr_compression_levels=dataset_config['train']['lr_compression_levels'],
         crop_size=dataset_config['train']['crop_size'],
         transform=dataset_config['train']['transform'],
+        scale_factor=model_config.get('scale_factor', 2),
         mode='train'
         )
 
@@ -41,6 +43,7 @@ def build_dataset(dataset_config):
         hr_root=dataset_config['val']['hr_root'],
         lr_root=dataset_config['val']['lr_root'],
         lr_compression_levels=dataset_config['val']['lr_compression_levels'],
+        scale_factor=model_config.get('scale_factor', 2),
         # No crop_size and transform for test mode
         mode='val'
     )
@@ -49,6 +52,7 @@ def build_dataset(dataset_config):
         hr_root=dataset_config['test']['hr_root'],
         lr_root=dataset_config['test']['lr_root'],
         lr_compression_levels=dataset_config['test']['lr_compression_levels'],
+        scale_factor=model_config.get('scale_factor', 2),
         # No crop_size and transform for test mode
         mode='test'
     )
@@ -74,5 +78,4 @@ def build_dataset(dataset_config):
         shuffle=dataset_config['test']['shuffle'],  # Usually False for test dataset
         num_workers=dataset_config['test'].get('num_workers', 1) 
     )
-
     return {'train': train_loader, 'val':val_loader, 'test': test_loader}

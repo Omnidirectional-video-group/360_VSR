@@ -1,7 +1,7 @@
 """
 Module Description:
  
-This script ....
+This script defines the saver class which save and load the trained models
  
  
 Author:
@@ -18,7 +18,7 @@ import torch
 from pathlib import Path
 
 class Saver:
-    def __init__(self, model, optimizer, save_dir=Path('checkpoints'), best_val_metric=float('inf')):
+    def __init__(self, model, optimizer, save_dir=Path('checkpoints'), best_val_metric=0):
         self.model = model
         self.optimizer = optimizer
         self.save_dir = save_dir
@@ -49,7 +49,7 @@ class Saver:
 
     def update_and_save(self, step, val_metric, filename='checkpoint.pth.tar'):
         """Updates the best metric and saves the model if the current metric is better."""
-        if val_metric < self.best_val_metric:
+        if val_metric > self.best_val_metric:
             self.best_val_metric = val_metric
             self.save_checkpoint(step, val_metric, filename)
             print(f"New best model saved with metric {val_metric}")

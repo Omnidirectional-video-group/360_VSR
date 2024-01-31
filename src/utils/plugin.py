@@ -18,6 +18,4 @@ def plugin_from_file(location, name, base):
     except AttributeError:
         raise AttributeError(f'Given plugin name {name} is not found.')
 
-
-
     return plugin

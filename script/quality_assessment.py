@@ -20,13 +20,10 @@ import os
 import pandas as pd
 from statistics import mean
 from concurrent.futures import ProcessPoolExecutor
-import multiprocessing
 from tqdm import tqdm
 import concurrent.futures
 import sys
 import argparse
-
-import time
 
 def calculate_psnr_ws(img, img2, crop_border, input_order='HWC', **kwargs):
     """

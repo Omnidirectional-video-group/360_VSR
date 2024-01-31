@@ -1,7 +1,7 @@
 """
 Module Description:
  
-This script ....
+This script introduces the learner for training and testing the model
  
  
 Author:

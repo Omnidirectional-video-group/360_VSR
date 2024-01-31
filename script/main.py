@@ -13,13 +13,19 @@ Date Created:
 29 01 2024
  
 """
+import sys
+import os
+current_script_dir = os.path.dirname(os.path.abspath(__file__))
+project_dir = os.path.dirname(current_script_dir)
+sys.path.insert(0, project_dir)
+
 import argparse
 import pathlib
 import yaml
 import torch.nn as nn
-from dataset import data_builder  
-from learner.learner import StandardLearner
-from utils import common_util,  plugin #
+from src.dataset import data_builder
+from src.learner.learner import StandardLearner
+from src.utils import common_util,  plugin
 
 
 def parse_arguments():
@@ -80,5 +86,11 @@ def main(args):
         raise ValueError(f'Wrong process type {args.process}')
 
 if __name__ == '__main__':
+
+    current_script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Calculate the project directory by going up one level from the script directory
+    project_dir = os.path.dirname(current_script_dir)
+    # Add the project directory to sys.path
+    sys.path.insert(0, project_dir)
     arguments = parse_arguments()
     main(arguments)

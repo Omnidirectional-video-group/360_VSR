@@ -1,29 +1,30 @@
 """
 Module Description:
- 
-This script ....
- 
- 
+
+This script introduces learner
+
+
 Author:
- 
+
 Ahmed Telili
- 
+
 Date Created:
- 
+
 29 01 2024
- 
+
 """
 
 import torch
 import os
-import time
+from tqdm import tqdm
 from pathlib import Path
 from torch.utils.tensorboard import SummaryWriter
-from learner.metrics import WSPSNRMetric
-from learner.saver import Saver
-from learner.loss import CharbonnierLoss, PerceptualLoss, GANLoss, TVLoss
-from torchvision import transforms
+from src.learner.metrics import WSPSNRMetric
+from src.learner.saver import Saver
+from src.learner.loss import *
 import numpy as np
+import time
+import cv2
 
 class StandardLearner():
     """
@@ -37,7 +38,7 @@ class StandardLearner():
         metric_functions: A `dict` contains one or multiple functions which are used to
             metric the results. Initialize to {}.
         saver: A `Saver` is used to save checkpoints. Initialize to None.
-        summary: A `TensorboardSummary` is used to save eventfiles. Initialize to None.
+        summary: A `TensorboardSummary` is used to save eventfiles.
         log_dir: A `str` represents the directory which records experiments.
         steps: An `int` represents the number of train steps.
         log_train_info_steps: An `int` represents frequency of logging training information.
@@ -54,7 +55,7 @@ class StandardLearner():
         self.step = 0
         self.optimizer = None
         self.lr_scheduler = None
-        self.metric_functions = {} 
+        self.metric_functions = {}
         self.saver = None
         self.summary = SummaryWriter(log_dir)
 
@@ -71,7 +72,7 @@ class StandardLearner():
 
         # Set device
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.model.to(self.device)  
+        self.model.to(self.device)
 
         # Set random seed for reproducibility
         torch.manual_seed(2454)
@@ -96,7 +97,7 @@ class StandardLearner():
         lr_scheduler_config = self.config['learner']['lr_scheduler']
         if lr_scheduler_config['name'] == 'ExponentialDecay':
             self.lr_scheduler = torch.optim.lr_scheduler.ExponentialLR(
-                self.optimizer, 
+                self.optimizer,
                 gamma=lr_scheduler_config['decay_rate']
             )
         # Other lr_schedulers can be added here
@@ -110,16 +111,16 @@ class StandardLearner():
         elif loss_name == 'perceptualloss':
             self.loss_fn = PerceptualLoss(**loss_config.get('params', {}))
         elif loss_name == 'ganloss':
-                    self.loss_fn = GANLoss(**loss_config.get('params', {}))
+            self.loss_fn = GANLoss(**loss_config.get('params', {}))
         elif loss_name == 'tvloss':
-                    self.loss_fn = TVLoss(**loss_config.get('params', {}))
+            self.loss_fn = TVLoss(**loss_config.get('params', {}))
         else:
             self.loss_fn = torch.nn.MSELoss()  # Default loss
         # Define metrics
         self.metric_functions['ws-psnr'] = WSPSNRMetric()
 
         if self.saver is None:  # Only initialize if not already set up by checkpoint loading
-                self.saver = Saver(self.model, self.optimizer, save_dir=Path(self.log_dir) / 'checkpoints')
+            self.saver = Saver(self.model, self.optimizer, save_dir=Path(self.log_dir) / 'checkpoints')
 
     def train_step(self, input_tensor, target_tensor):
         input_tensor, target_tensor = input_tensor.to(self.device), target_tensor.to(self.device)
@@ -131,12 +132,12 @@ class StandardLearner():
         self.optimizer.step()
         return pred_tensor, loss.item()
 
-    def test_step(self, input_tensor, target_tensor):
+    def test_step(self, input_tensor):
         self.model.eval()
-        input_tensor, target_tensor = input_tensor.to(self.device), target_tensor.to(self.device)
+        input_tensor = input_tensor.to(self.device)
         with torch.no_grad():
             pred_tensor = self.model(input_tensor)
-            
+
         return pred_tensor
 
     def train(self):
@@ -156,18 +157,15 @@ class StandardLearner():
             print(f'Resuming training from previously saved checkpoint at step {self.step}.')
         while step < total_steps:
             for input_tensor, target_tensor in train_loader:
-                print(input_tensor.shape)
-                print(target_tensor.shape)
                 if step >= total_steps:
                     break
                 pred, loss = self.train_step(input_tensor, target_tensor)
-
 
                 # Logging training information
                 if step % log_train_info_steps == 0:
                     self.summary.add_scalar('Training Loss', loss, step)
                     print(f'Step: {step}, Training Loss: {loss}')
-                    
+
                 if step % keep_ckpt_steps == 0 and step != 0:
                     self.saver.save_checkpoint(step, val_metric=None)
 
@@ -181,15 +179,13 @@ class StandardLearner():
                     self.summary.add_scalar('Validation WS-PSNR', val_metric, step)
                     print(f'Step: {step}, Validation Loss: {val_loss}, Validation WS-PSNR: {val_metric}')
 
-
-
     def perform_validation(self, val_loader):
         with torch.no_grad():
             val_loss = 0.0
             self.metric_functions['ws-psnr'].reset()  # Reset the metric at the start of validation
 
             for input_tensor, target_tensor in val_loader:
-                pred = self.test_step(input_tensor, target_tensor)
+                pred = self.test_step(input_tensor)
 
                 target_tensor = target_tensor.to(self.device)
 
@@ -197,8 +193,7 @@ class StandardLearner():
 
                 # Update the metric for the current batch
 
-                self.metric_functions['ws-psnr'].update(pred*255, target_tensor*255)
-
+                self.metric_functions['ws-psnr'].update(pred * 255, target_tensor * 255)
             # Calculate average loss and metric
             val_loss /= len(val_loader)
             val_metric = self.metric_functions['ws-psnr'].get_result()
@@ -226,27 +221,74 @@ class StandardLearner():
         upscaled_dir = Path(self.log_dir) / "upscaled"
         upscaled_dir.mkdir(parents=True, exist_ok=True)
 
+        first_batch = next(iter(test_loader))
+        print(len(first_batch))
+
         image_counter = 0
-        with torch.no_grad():
-            for batch in test_loader:
-                input_tensor, target_tensor = batch
-                input_tensor = input_tensor.to(self.device)
-                target_tensor = target_tensor.to(self.device)
+        if len(first_batch) == 3:
+            with torch.no_grad():
+                for batch in tqdm(test_loader, desc="Processing images"):
+                    input_tensor, target_tensor, lr_paths = batch
+                    input_tensor = input_tensor.to(self.device)
+                    target_tensor = target_tensor.to(self.device)
 
-                # Generate upscaled images
-                upscaled_tensors = self.model(input_tensor)
+                    # Generate upscaled images
+                    start_time = time.time()
+                    upscaled_tensors = self.model(input_tensor)
+                    end_time = time.time()
+                    time_taken = end_time - start_time
+                    _, H, W = upscaled_tensors[0].shape
+                    tqdm.write(f"Time taken for frame of size {H}x{W}: {time_taken:.4f} seconds")
 
-                ws_psnr_metric.update(upscaled_tensors, target_tensor)
+                    ws_psnr_metric.update(upscaled_tensors* 255, target_tensor* 255)
 
+                    for i, upscaled_tensor in enumerate(upscaled_tensors):
 
-                for upscaled_tensor in upscaled_tensors:
-                    # Convert the tensor to an image
-                    upscaled_image = transforms.ToPILImage()(upscaled_tensor.cpu().detach())
+                        output = upscaled_tensor.data.squeeze().float().cpu().clamp_(0, 1).numpy()
+                        if output.ndim == 3:
+                            output = np.transpose(output[[2, 1, 0], :, :], (1, 2, 0))  # CHW-RGB to HCW-BGR
+                        output = (output * 255.0).round().astype(np.uint8)  # float32 to uint8
 
-                    # Save the image
-                    upscaled_image.save(upscaled_dir / f"upscaled_{image_counter}.png")
-                    image_counter += 1
+                        # Save the image
+                        path_parts = lr_paths[i].split(os.path.sep)
+                        bitrate, video_name, im_name = path_parts[-3], path_parts[-2], path_parts[-1]
 
-        average_wspnsr = ws_psnr_metric.get_result()            
-        print(f"Average WS-PSNR: {average_wspnsr}")
-        print(f"Upscaled images are saved in {upscaled_dir}")
+                        save_dir = Path(self.log_dir) / "upscaled" / bitrate / video_name
+                        save_dir.mkdir(parents=True, exist_ok=True)
+                        image_path = f'{save_dir}/{im_name}'
+                        cv2.imwrite(image_path, output)
+                        image_counter += 1
+
+            average_wspnsr = ws_psnr_metric.get_result()
+            print(f"Average WS-PSNR: {average_wspnsr}")
+            print(f"Upscaled images are saved in {upscaled_dir}")
+        else:
+            with torch.no_grad():
+                for batch in tqdm(test_loader, desc="Processing images"):
+                    input_tensor, lr_paths = batch
+                    input_tensor = input_tensor.to(self.device)
+
+                    # Generate upscaled images
+                    start_time = time.time()
+                    upscaled_tensors = self.model(input_tensor)
+                    end_time = time.time()
+                    time_taken = end_time - start_time
+                    _, H, W = upscaled_tensors[0].shape
+                    tqdm.write(f"Time taken for frame of size {H}x{W}: {time_taken:.4f} seconds")
+
+                    for i, upscaled_tensor in enumerate(upscaled_tensors):
+
+                        output = upscaled_tensor.data.squeeze().float().cpu().clamp_(0, 1).numpy()
+                        if output.ndim == 3:
+                            output = np.transpose(output[[2, 1, 0], :, :], (1, 2, 0))  # CHW-RGB to HCW-BGR
+                        output = (output * 255.0).round().astype(np.uint8)  # float32 to uint8
+
+                        # Save the image
+                        path_parts = lr_paths[i].split(os.path.sep)
+                        bitrate, video_name, im_name = path_parts[-3], path_parts[-2], path_parts[-1]
+
+                        save_dir = Path(self.log_dir) / "upscaled" / bitrate / video_name
+                        save_dir.mkdir(parents=True, exist_ok=True)
+                        image_path = f'{save_dir}/{im_name}'
+                        cv2.imwrite(image_path, output)
+                        image_counter += 1

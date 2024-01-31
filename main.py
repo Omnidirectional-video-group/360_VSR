@@ -1,9 +1,5 @@
 """
-Module Description:
- 
-This script ....
- 
- 
+
 Author:
  
 Ahmed Telili
@@ -44,7 +40,7 @@ def parse_arguments():
     return parser.parse_args()
 
 def main(args):
-    """Run main function for vision quality experiments.
+    """Run main function for vsr experiments.
 
     Args:
         args: A `dict` contain augments 'process' and 'config_path'.
@@ -55,19 +51,16 @@ def main(args):
     log_dir = config.pop('log_dir')
 
     pathlib.Path(log_dir).mkdir(parents=True, exist_ok=True)  # Ensure log_dir exists
-    
     # Prepare dataset
-    dataset = data_builder.build_dataset(config['dataset'])  # Adjust this to your PyTorch dataset builder
-
+    dataset = data_builder.build_dataset(config['dataset'], config['model'])
     # Prepare model
-    # Replace this with your method of creating a PyTorch model
     model_builder = plugin.plugin_from_file(
     config['model']['path'], config['model']['name'], nn.Module)
 
-    model = model_builder() # create_model should be defined by you
+    model = model_builder(config['model']['scale_factor'])
 
     # Copy model file to log directory
-    common_util.copy_file(config['model']['path'], log_dir)  # If applicable
+    common_util.copy_file(config['model']['path'], log_dir)
 
     # Prepare learner
     learner = StandardLearner(config, model, dataset, log_dir)
