@@ -178,6 +178,7 @@ Hadi Amirpour
 #### Acknowledgement
 
 We use the GitHub README.md template from [Stereo SR competition](https://github.com/The-Learning-And-Vision-Atelier-LAVA/Stereo-Image-SR/tree/NTIRE2022)
+
 We inspired the Framework template from [mai22-real-time-video-sr](https://github.com/MediaTek-NeuroPilot/mai22-real-time-video-sr/tree/main)
 
 ## 🧑‍🤝‍🧑 WhatsApp group
