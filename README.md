@@ -1,5 +1,4 @@
 
-
 # ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
 
 <!-- <img title="" src="/imgs/mark.png" alt="" data-align="center"> -->
@@ -14,7 +13,7 @@
 
 <div align="center">
 
-📕[__Datasets__](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ)  __|__ 📝[Evaluation Script](script/quality_assessment.py) __|__ 🧑‍🤝‍🧑[WhatsApp group](https://chat.whatsapp.com/GPy6gBmVbNcC7epkp0t2lW)
+📕[__Datasets__](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ)  __|__ 📝[Evaluation Script](script/quality_assessment.py) __|__ 🧑‍🤝‍🧑[WhatsApp group](https://chat.whatsapp.com/GPy6gBmVbNcC7epkp0t2lW) __|__ [Official website](www.icip24-video360sr.ae)
 
 ⏬[Submission example](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR)
 
@@ -62,7 +61,13 @@ We provide a dataset containing 200 360-degree videos, predominantly sourced fro
 
 ### ● Metrics
 
-We evaluate the super-resolved 360° videos by comparing them to the ground truth HR ERP videos. To measure the fidelity, we adopt the widely used Weighted-to-Spherically-uniform Peak Signal to Noise Ratio (WS-PSNR) as the quantitative evaluation metric. Moreover, we incorporate runtime complexity into our final scoring formula. Therefore, models that optimally balance between quality and processing efficiency are highlight more. For more details, please refer to the detailed descriptions available on the official website [here](#website).
+We evaluate the super-resolved 360° videos by comparing them to the ground truth HR ERP videos. To measure the fidelity, we adopt the widely used Weighted-to-Spherically-uniform Peak Signal to Noise Ratio (WS-PSNR) as the quantitative evaluation metric. Moreover, we incorporate runtime complexity into our final scoring formula. Therefore, models that optimally balance between quality and processing efficiency are highlight more. For more details, please refer to the detailed descriptions available on the official website [here](www.icip24-video360sr.ae).
+
+### ● Baseline example results
+
+<div align="center">
+  <img src="imgs/base_perf.png">
+</div>
 
 ## Tracks
 
@@ -76,17 +81,24 @@ This track is dedicated to achieving a remarkable enhancement in both resolution
 
 ## Submission
 
-We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, the final results and the source codes (both training and test) need to be submitted. Please refer to our [online website](icip24-video360sr.ae) for details of the submission rules.
+We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, the final results and the source codes (both training and test) need to be submitted. Please refer to our [online website](www.icip24-video360sr.ae) for details of the submission rules.
 
 ## Training and Validation
-### Requirement 
+
+### Requirement
+
 Use pip to install all requirements:
-```bash
+
+```bash {"id":"01HNJ075F99HT07YSB8EPFQA8R"}
 pip install -r requirements.txt
+
 ```
-### Configuration 
+
+### Configuration
+
 Before training and testing, please make sure the fields in [config.yaml](src/config.yaml) is properly set.
-```yaml
+
+```yaml {"id":"01HNJ075F99HT07YSB8FAT6V53"}
 log_dir: "output/FSRCNN"  # Directory for logs and outputs
 
 dataset:
@@ -144,21 +156,27 @@ learner:
   loss:
     name: "CharbonnierLoss"   # Type of loss function to use
     params: {}                # Additional parameters for the loss function, if needed
+
 ```
 
+### Train
 
-
-### Train 
 To train the model, use the following command:
 
-```bash
+```bash 
 python main.py --process train --config_path config.yml
+
 ```
-### Test  
+
+### Test
+
 To generate testing outputs, use the following command:
-```bash
+
+```bash 
 python main.py --process test --config_path config.yml
+
 ```
+
 ## FAQ
 
 1.  We do not restrict competitors from using additional training data. If it is used, it is necessary to indicate the source and amount.
