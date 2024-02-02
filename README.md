@@ -187,10 +187,13 @@ python main.py --process test --config_path config.yml
 
 ### Organizers
 
-Ahmed Telili
-Ibrahim Farhat
-Wessim Hamidouche
-Hadi Amirpour
+Ahmed Telili @TII
+
+Ibrahim Farhat @TII
+
+Wassim Hamidouche @TII
+
+Hadi Amirpour @AAU
 
 #### Acknowledgement
 
