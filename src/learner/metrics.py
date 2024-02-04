@@ -1,7 +1,7 @@
 """
 Module Description:
  
-This script ....
+This script describes metrics, WS-PSNR and WS-SSIM
  
  
 Author:
