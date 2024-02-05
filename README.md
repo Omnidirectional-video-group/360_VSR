@@ -87,7 +87,7 @@ The table illustrates the WS-PSNR performance and run time of three baseline mod
 We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, participants should adhere to the "Docker File Submission Guideline (TBD)" and submit their docker files by  April 15, 2024 23:59 (AOE🌎), to the grand challenge email address: ahmed.telili@tii.ae and brahim.farhat@tii.ae 
 
 ## Training and Validation
-
+**We provide a comprehensive framework designed to facilitate both training and testing processes for participants. However, participants are completely free to use their own code in place of our provided resources.**
 ### Requirement
 
 Use pip to install all requirements:
