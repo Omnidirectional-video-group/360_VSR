@@ -5,8 +5,6 @@
 
 <div align="center">
   <img src="imgs/logo.png" height="128">
-  <span style="font-size: 32px; margin: 0 10px;">×</span>
-  <img src="imgs/tii-logo.jpg" height="128">
 </div>
 
 360° Video Super-Resolution and Quality Enhancement Challenge is held as a part of the **[ICIP2024 conference](https://2024.ieeeicip.org/)** sponsored by **[TII](https://www.tii.ae/)**.
@@ -29,27 +27,29 @@
 
 - ✅ 2024.02.05 Release of train data (input and output images) and validation data (inputs only)
 - ✅ 2024.02.05 Validation server online
+- ✅ 2024.03.24 Challenge paper submission deadline
 - ✅ 2024.04.15 Final test data release (inputs only)
 - ✅ 2024.04.28 Docker file / code submission deadline
 - ✅ 2024.05.05 Final test results release to the participants and winner announcement
-- ✅ 2024.05.21 Challenge paper submission deadline
 - ✅ 2024.10.27 Workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu DHabi, UAE)
 
 ## Introduction
 
-Omnidirectional visual content, commonly referred to as 360-degree images and videos, has garnered significant interest in both academia and industry, establishing itself as the primary media modality for VR/XR applications. 360-degree videos offer numerous features and advantages, allowing users to view scenes in all directions, providing an immersive quality of experience with up to 3 degrees of freedom (3DoF). When integrated on embedded devices with remote control, 360-degree videos offer additional degrees of freedom, enabling movement within the space (6DoF). However, 360-degree videos come with specific requirements, such as high-resolution content with up to 16K video resolution to ensure a high-quality representation of the scene. Moreover, limited bandwidth in wireless communication, especially under mobility conditions, imposes strict constraints on the available throughput to prevent packet loss and maintain low end-to-end latency. Adaptive resolution and efficient compression of 360-degree video content can address these challenges by adapting to the available throughput while maintaining high video quality at the decoder. Nevertheless, the downscaling and coding of the original content before transmission introduces visible distortions and loss of information details that cannot be recovered at the decoder side. In this context, machine learning techniques have demonstrated outstanding performance in alleviating coding artifacts and recovering lost details, particularly for 2D video. Compared to 2D video, 360-degree video presents a lower angular resolution issue, requiring augmentation of both the resolution and the quality of the video.
+Omnidirectional visual content, commonly referred to as 360-degree images and videos, has garnered significant interest in both academia and industry, establishing itself as the primary media modality for VR/XR applications. 360-degree videos offer numerous features and advantages, allowing users to view scenes in all directions, providing an immersive quality of experience with up to 3 degrees of freedom (3DoF). When integrated on embedded devices with remote control, 360-degree videos offer additional degrees of freedom, enabling movement within the space (6DoF). However, 360-degree videos come with specific requirements, such as high-resolution content with up to 16K video resolution to ensure a high-quality representation of the scene. Moreover, limited bandwidth in wireless communication, especially under mobility conditions, imposes strict constraints on the available throughput to prevent packet loss and maintain low end-to-end latency. Adaptive resolution and efficient compression of 360-degree video content can address these challenges by adapting to the available throughput while maintaining high video quality at the decoder. Nevertheless, the downscaling and coding of the original content before transmission introduces visible distortions and loss of information details that cannot be recovered at the decoder side. In this context, machine learning techniques have demonstrated outstanding performance in alleviating coding artifacts and recovering lost details, particularly for 2D video. Compared to 2D video, 360-degree video presents a lower angular resolution issue, requiring augmentation of both the resolution and the quality of the video. This challenge presents an opportunity for the scientific research and industrial community to propose solutions for quality enhancement and super-resolution for 360-degree videos.
 
 In this challenge, we aim to establish high-quality benchmarks for 360° video SR, and expect to further highlight the challenges and research problems. This challenge presents an opportunity for the scientific research and industrial community to propose solutions for quality enhancement and super-resolution for 360-degree videos.
 
 ## Challenge Description
 
-Only the training and validation sets will be released **during the first phase (model construction period)**, and the HR and four LR 360° videos encoded at 4 different target bitrates using HEVC video encoder are available for the two tracks. The participants can design their methods by considering the characteristics of 360° videos. Then these models can be trained on the training set and evaluated on the validation set. Note that the participants can use additional data.
+__During the first phase (Development period)__ Participants will have access to public training and a light version of the public testing (validation set) of the 360 VISTA-SR dataset. This streamlined validation set will include a single folder containing LR (Low Resolution) 360° videos encoded at various target bitrates, rather than four distinct bitrate categories. This approach is aimed at reducing data transfer sizes for submissions. Participants can train their models and observe their scores for the validation set. Live score values will be uploaded on the CodaLab platform, with the team's score on the leaderboard regularly updated. For details, refer to the  [Submission](#submission) section.
 
-__During the second phase (testing period)__, the testing set containing only LR 360° videos encoded at the same traget bitrate with hevc encoder will be released. The participants can use the testing LR videos with their trained models. The results, in the format mentionned [Here](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR), should be submitted by the participants and then evaluated by the organizers with the quantitative metrics. The final score is communicated to participant on the submission portal based only on quality result and model complexity.
+__During the second phase (Testing period)__, the full validation dataset will be released, allowing participants to further refine their models with an extensive range of data. At the end of this phase,  participants should adhere to the "Docker File Submission Guideline (TBD)" and submit their docker files by  April 15, 2024 23:59 (AOE🌎), to the grand challenge email address: ahmed.telili@tii.ae and brahim.farhat@tii.ae .
 
-### Dataset - 360 VISTA ([Download](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ))
 
-We provide a dataset containing 200 360-degree videos, predominantly sourced from YouTube and ODV360 (Link) characterized by high quality and resolution (4K and 2K) in ERP format. All videos are licensed under Creative Commons Attribution (reuse allowed), and our dataset is exclusively designed for academic and research purposes. The video dataset encompasses various content characteristics, including outdoor and indoor scenes, as well as high motion sport contents. Each video consists of 100 frames. The dataset is partitioned into 170 videos for training, 15 for validation, and 15 for testing. Note that additional external content can be incorporated for training.
+
+### Dataset - 360 VISTA-SR ([Download](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ))
+
+We provide a dataset containing 200 360-degree videos, predominantly sourced from YouTube and ODV360 (Link) characterized by high quality and resolution (4K and 2K) in ERP format. All videos are licensed under Creative Commons Attribution (reuse allowed), and our dataset is exclusively designed for academic and research purposes. The video dataset encompasses various content characteristics, including outdoor and indoor scenes, as well as high motion sport contents. Each video consists of 100 frames. The dataset is partitioned into 160 videos for training, 20 for validation, and 20 for testing. Note that additional external content can be incorporated for training.
 
 |         | Training                      | Validation               | Testing                    |
 | ------- | ---------------------         | ------------------------ | -------------------------- |
@@ -67,23 +67,24 @@ We evaluate the super-resolved 360° videos by comparing them to the ground trut
 
 #### Track 1：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
 
-This track aims To significantly enhance the resolution and overall quality of 360° omnidirectional videos, targeting a 4x improvement in clarity and detail. Participants are required to develop algorithms or systems that can effectively upscale 360° omnidirectional videos by a factor of four (X4), while also improving their overall visual quality. The challenge involves addressing common issues such as blurring, distortions, and artifacts typical in panoramic content. In addition to this, run time complexity is also considered for the final score.
-
+This track focuses on achieving x4 upscaling for the input video, which poses a significant challenge in maintaining high quality. Models that achieve superior quality, even at a slower pace, are emphasized in this track. The quality score holds a higher weight in the final score calculation compared to Track 2.
 #### Track 2：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X2)
 
-This track is dedicated to achieving a remarkable enhancement in both resolution and overall quality of 360° omnidirectional videos, aiming for a substantial 2x improvement in clarity and detail. Participants are challenged to innovate and develop sophisticated algorithms or systems capable of effectively upscaling 360° omnidirectional videos by a factor of two (X2). The goal is not only to magnify the resolution but also to significantly enhance the visual quality, addressing prevalent issues such as blurring, distortions, and artifacts commonly associated with panoramic content. Moreover, unlike the first track, this challenge puts a strong emphasis on the efficiency of the proposed solutions. Runtime complexity will be a crucial factor in the evaluation process, ensuring that the enhancements are not just effective, but also practical. Models demonstrating slower performance will be penalized, incentivizing participants to strike an optimal balance between quality improvement and computational efficiency.
-
+This track targets x2 upscaling of the downgraded source videos. Achieving good quality in x2 super resolution is relatively more feasible. The challenge lies in finding the optimal trade-off between complexity and quality. Therefore, the complexity score is given a higher weight in the final score.
 ### Baseline example results
 
-<div align="center">
-  <img src="imgs/base_perf.png">
-</div>
+| Model         | SwinIR / WS-PSNR (dB) | SwinIR / Runtime (s/2k) | SwinIR / Score | FSRCNN / WS-PSNR (dB) | FSRCNN / Runtime (s/2k) | FSRCNN / Score |
+|---------------|-----------------------|-------------------------|----------------|-----------------------|-------------------------|----------------|
+| Track #1 (x4) | 29.141                | 0.4458                  | 29.79          | 28.346                | 0.0007                  | 61.10          |
+| Track #2 (x2) | 30.014                | 1.5232                  | 13.87          | 29.546                | 0.0008                  | 76.21          |
 
-The table presents the scoring outcomes of baseline models on the 360VISTA dataset. For both x2 and x4 tracks, FSRCNN leads according to our scoring criteria. Despite SWIN's superior quality, FSRCNN's faster run time gives it the edge. Thus, the top model is the one that balances quality and complexity effectively. 
 
+The table illustrates the WS-PSNR performance and run time of three baseline models on the 360VISTA validation set. Across both x2 and x4 tracks, FSRCNN emerges as the top-performing model based on our scoring criteria. Despite SwinIR exhibiting superior quality, FSRCNN's faster run time provides it with a competitive advantage. Therefore, the optimal model is one that effectively balances quality and complexity.
+
+Note on computational specifications: The results presented herein were obtained using a desktop computer equipped with an Intel® Xeon 8280 CPU @ 2.70GHz × 56, 128GB RAM, and a NVIDIA RTX 6000 Ada graphics card. 
 ## Submission
 
-We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, the final results and the source codes (both training and test) need to be submitted. Please refer to our [online website](www.icip24-video360sr.ae) for details of the submission rules.
+We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, participants should adhere to the "Docker File Submission Guideline (TBD)" and submit their docker files by  April 15, 2024 23:59 (AOE🌎), to the grand challenge email address: ahmed.telili@tii.ae and brahim.farhat@tii.ae 
 
 ## Training and Validation
 
