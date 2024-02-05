@@ -225,70 +225,60 @@ class StandardLearner():
         print(len(first_batch))
 
         image_counter = 0
-        if len(first_batch) == 3:
-            with torch.no_grad():
-                for batch in tqdm(test_loader, desc="Processing images"):
+        start = torch.cuda.Event(enable_timing=True)
+        end = torch.cuda.Event(enable_timing=True)
+        with torch.no_grad():
+            for batch in tqdm(test_loader, desc="Processing images"):
+                if len(batch) == 3:
                     input_tensor, target_tensor, lr_paths = batch
-                    input_tensor = input_tensor.to(self.device)
                     target_tensor = target_tensor.to(self.device)
+                else:
+                    input_tensor, lr_paths = batch
 
-                    # Generate upscaled images
-                    start_time = time.time()
-                    upscaled_tensors = self.model(input_tensor)
-                    end_time = time.time()
-                    time_taken = end_time - start_time
-                    _, H, W = upscaled_tensors[0].shape
-                    tqdm.write(f"Time taken for frame of size {H}x{W}: {time_taken:.4f} seconds")
+                input_tensor = input_tensor.to(self.device)
 
-                    ws_psnr_metric.update(upscaled_tensors* 255, target_tensor* 255)
+                start.record()
 
-                    for i, upscaled_tensor in enumerate(upscaled_tensors):
+                # Generate upscaled images
+                upscaled_tensors = self.model(input_tensor)
 
-                        output = upscaled_tensor.data.squeeze().float().cpu().clamp_(0, 1).numpy()
-                        if output.ndim == 3:
-                            output = np.transpose(output[[2, 1, 0], :, :], (1, 2, 0))  # CHW-RGB to HCW-BGR
-                        output = (output * 255.0).round().astype(np.uint8)  # float32 to uint8
+                # Synchronize CUDA after computation and before stopping the timer
+                end.record()
 
-                        # Save the image
-                        path_parts = lr_paths[i].split(os.path.sep)
-                        bitrate, video_name, im_name = path_parts[-3], path_parts[-2], path_parts[-1]
+                torch.cuda.synchronize()
 
-                        save_dir = Path(self.log_dir) / "upscaled" / bitrate / video_name
-                        save_dir.mkdir(parents=True, exist_ok=True)
-                        image_path = f'{save_dir}/{im_name}'
-                        cv2.imwrite(image_path, output)
-                        image_counter += 1
+                time_taken = start.elapsed_time(end)
+                _, H, W = upscaled_tensors[0].shape
+                tqdm.write(f"Time taken for frame of size {H}x{W}: {time_taken/1000:.4f} seconds")
 
+                if len(batch) == 3:
+                    ws_psnr_metric.update(upscaled_tensors * 255, target_tensor * 255)
+
+                for i, upscaled_tensor in enumerate(upscaled_tensors):
+                    # Convert the tensor to an image format
+                    output = upscaled_tensor.data.squeeze().float().cpu().clamp_(0, 1).numpy()
+                    if output.ndim == 3:
+                        # Convert CHW to HWC and RGB to BGR for compatibility with cv2
+                        output = np.transpose(output, (1, 2, 0))  # CHW to HWC
+                        output = output[..., ::-1]  # RGB to BGR
+
+                    # Convert from float to uint8
+                    output = (output * 255.0).round().astype(np.uint8)
+
+                    # Construct the path for saving the upscaled image
+                    path_parts = lr_paths[i].split(os.path.sep)
+                    bitrate, video_name, im_name = path_parts[-3], path_parts[-2], path_parts[-1]
+
+                    save_dir = Path(self.log_dir) / "upscaled" / bitrate / video_name
+                    save_dir.mkdir(parents=True, exist_ok=True)
+                    image_path = save_dir / im_name
+
+                    # Save the image
+                    cv2.imwrite(str(image_path), output)
+                    image_counter += 1
+
+        if len(first_batch) == 3:
             average_wspnsr = ws_psnr_metric.get_result()
             print(f"Average WS-PSNR: {average_wspnsr}")
-            print(f"Upscaled images are saved in {upscaled_dir}")
-        else:
-            with torch.no_grad():
-                for batch in tqdm(test_loader, desc="Processing images"):
-                    input_tensor, lr_paths = batch
-                    input_tensor = input_tensor.to(self.device)
 
-                    # Generate upscaled images
-                    start_time = time.time()
-                    upscaled_tensors = self.model(input_tensor)
-                    end_time = time.time()
-                    time_taken = end_time - start_time
-                    _, H, W = upscaled_tensors[0].shape
-                    tqdm.write(f"Time taken for frame of size {H}x{W}: {time_taken:.4f} seconds")
-
-                    for i, upscaled_tensor in enumerate(upscaled_tensors):
-
-                        output = upscaled_tensor.data.squeeze().float().cpu().clamp_(0, 1).numpy()
-                        if output.ndim == 3:
-                            output = np.transpose(output[[2, 1, 0], :, :], (1, 2, 0))  # CHW-RGB to HCW-BGR
-                        output = (output * 255.0).round().astype(np.uint8)  # float32 to uint8
-
-                        # Save the image
-                        path_parts = lr_paths[i].split(os.path.sep)
-                        bitrate, video_name, im_name = path_parts[-3], path_parts[-2], path_parts[-1]
-
-                        save_dir = Path(self.log_dir) / "upscaled" / bitrate / video_name
-                        save_dir.mkdir(parents=True, exist_ok=True)
-                        image_path = f'{save_dir}/{im_name}'
-                        cv2.imwrite(image_path, output)
-                        image_counter += 1
+        print(f"Upscaled images are saved in {upscaled_dir}")
