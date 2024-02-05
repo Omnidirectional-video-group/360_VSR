@@ -222,11 +222,12 @@ class StandardLearner():
         upscaled_dir.mkdir(parents=True, exist_ok=True)
 
         first_batch = next(iter(test_loader))
-        print(len(first_batch))
 
         image_counter = 0
+        
         start = torch.cuda.Event(enable_timing=True)
         end = torch.cuda.Event(enable_timing=True)
+        
         with torch.no_grad():
             for batch in tqdm(test_loader, desc="Processing images"):
                 if len(batch) == 3:
