@@ -75,8 +75,8 @@ This track targets x2 upscaling of the downgraded source videos. Achieving good 
 
 | Model         | SwinIR / WS-PSNR (dB) | SwinIR / Runtime (s/2k) | SwinIR / Score | FSRCNN / WS-PSNR (dB) | FSRCNN / Runtime (s/2k) | FSRCNN / Score |
 |---------------|-----------------------|-------------------------|----------------|-----------------------|-------------------------|----------------|
-| Track #1 (x4) | 29.141                | 0.4458                  | 29.79          | 28.346                | 0.0007                  | 61.10          |
-| Track #2 (x2) | 30.014                | 1.5232                  | 13.87          | 29.546                | 0.0008                  | 76.21          |
+| Track #1 (x4) | 29.141                | 0.4458                  | 29.79          | 28.346                | 0.0013                  | 61.10          |
+| Track #2 (x2) | 30.014                | 1.5232                  | 13.87          | 29.546                | 0.0041                  | 76.21          |
 
 
 The table illustrates the WS-PSNR performance and run time of three baseline models on the 360VISTA validation set. Across both x2 and x4 tracks, FSRCNN emerges as the top-performing model based on our scoring criteria. Despite SwinIR exhibiting superior quality, FSRCNN's faster run time provides it with a competitive advantage. Therefore, the optimal model is one that effectively balances quality and complexity.
