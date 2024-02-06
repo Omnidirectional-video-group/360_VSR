@@ -1,9 +1,8 @@
-
 # ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
 
 <!-- <img title="" src="/imgs/mark.png" alt="" data-align="center"> -->
 
-<div align="center">
+<div align="center">s
   <img src="imgs/logo.png" height="128">
 </div>
 
@@ -23,7 +22,7 @@
 
 👉 [Track 2：360° Omnidirectional Video Super-Resolution and Quality Enhancement (X2)](#track-0000-omnidirectional-video-super-resolution-x2) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17459)
 
-## 🚩 News and Updates
+## 🚩 Track #1: ICIP 2024 challenge timeline 
 
 - ✅ 2024.02.05 Release of train data (input and output images) and validation data (inputs only)
 - ✅ 2024.02.05 Validation server online
@@ -32,6 +31,15 @@
 - ✅ 2024.03.06 Final test results release and winner announcement
 - ✅ 2024.03.27 Challenge paper submission deadline
 - ✅ 2024.10.27 Workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu DHabi, UAE)
+
+## 🚩 Track #2: Innovation showcase timeline  
+
+- ✅ 2024.02.05 Release of train data (input and output images) and validation data (inputs only)
+- ✅ 2024.02.05 Validation server online
+- ✅ 2024.05.15 Final test data release
+- ✅ 2024.04.28 Docker file/code submission deadline
+- ✅ 2024.05.05 Final test results release and winner announcement
+- ✅ 2024.05.30 Award distribution 
 
 ## Introduction
 
@@ -44,8 +52,6 @@ In this challenge, we aim to establish high-quality benchmarks for 360° video S
 __During the first phase (Development period)__ Participants will have access to public training and a light version of the public testing (validation set) of the 360 VISTA-SR dataset. This streamlined validation set will include a single folder containing LR (Low Resolution) 360° videos encoded at various target bitrates, rather than four distinct bitrate categories. This approach is aimed at reducing data transfer sizes for submissions. Participants can train their models and observe their scores for the validation set. Live score values will be uploaded on the CodaLab platform, with the team's score on the leaderboard regularly updated. For details, refer to the  [Submission](#submission) section.
 
 __During the second phase (Testing period)__, the full validation dataset will be released, allowing participants to further refine their models with an extensive range of data. At the end of this phase,  participants should adhere to the "Docker File Submission Guideline (TBD)" and submit their docker files by  April 15, 2024 23:59 (AOE🌎), to the grand challenge email address: ahmed.telili@tii.ae and brahim.farhat@tii.ae .
-
-
 
 ### Dataset - 360 VISTA-SR ([Download](https://tiiuae-my.sharepoint.com/:f:/g/personal/ahmed_telili_tii_ae/EogDz0BrzYNLqyj5LpniiOQB6yq-jtpxJFLbTjudB4rGkQ))
 
@@ -65,12 +71,16 @@ We evaluate the super-resolved 360° videos by comparing them to the ground trut
 
 ## Tracks
 
-#### Track 1：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
+#### Track 1：ICIP 2024 challenge 
+##### 360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X2)
 
-This track focuses on achieving x4 upscaling for the input video, which poses a significant challenge in maintaining high quality. Models that achieve superior quality, even at a slower pace, are emphasized in this track. The quality score holds a higher weight in the final score calculation compared to Track 2.
-#### Track 2：360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X2)
+This truck for contributors aiming to submit a challenge paper to the ICIP 24. It targets x2 upscaling of the downgraded source videos. Achieving good quality in x2 super resolution is relatively more feasible.  This truck lies in finding the optimal trade-off between complexity and quality.  The complexity score is given a higher weight in the final score.
 
-This track targets x2 upscaling of the downgraded source videos. Achieving good quality in x2 super resolution is relatively more feasible. The challenge lies in finding the optimal trade-off between complexity and quality. Therefore, the complexity score is given a higher weight in the final score.
+#### Track 2：Innovation showcase
+##### 360° Omnidirectional Video Super-Resolution and Qaulity Enhancement (X4)
+
+This track is a longer-duration compared to Track 1, giving participants more time to work on their ideas. It focuses on achieving x4 upscaling for the input video, which poses a significant challenge in maintaining high quality. Models that achieve superior quality, even at a slower pace, are emphasized in this track. The quality score holds a higher weight in the final score calculation. 
+
 ### Baseline example results
 
 | Model         | SwinIR / WS-PSNR (dB) | SwinIR / Runtime (s/2k) | SwinIR / Score | FSRCNN / WS-PSNR (dB) | FSRCNN / Runtime (s/2k) | FSRCNN / Score |
@@ -78,30 +88,31 @@ This track targets x2 upscaling of the downgraded source videos. Achieving good 
 | Track #1 (x4) | 29.141                | 0.4458                  | 29.79          | 28.346                | 0.0013                  | 61.10          |
 | Track #2 (x2) | 30.014                | 1.5232                  | 13.87          | 29.546                | 0.0041                  | 76.21          |
 
-
 The table illustrates the WS-PSNR performance and run time of three baseline models on the 360VISTA validation set. Across both x2 and x4 tracks, FSRCNN emerges as the top-performing model based on our scoring criteria. Despite SwinIR exhibiting superior quality, FSRCNN's faster run time provides it with a competitive advantage. Therefore, the optimal model is one that effectively balances quality and complexity.
 
 **Note on computational specifications: The results presented herein were obtained using a desktop computer equipped with an Intel® Xeon 8280 CPU @ 2.70GHz × 56, 128GB RAM, and a NVIDIA RTX 6000 Ada graphics card with 48GB of VRAM.**
+
 ## Submission
 
-We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, participants should adhere to the "Docker File Submission Guideline (TBD)" and submit their docker files by  April 15, 2024 23:59 (AOE🌎), to the grand challenge email address: ahmed.telili@tii.ae and brahim.farhat@tii.ae 
+We use CodaLab for online submission in the development phase. Here, we provide an example [link](https://tiiuae-my.sharepoint.com/personal/ahmed_telili_tii_ae/_layouts/15/onedrive.aspx?ga=1&id=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR%2Fsubmission%5Ftest%2Ezip&parent=%2Fpersonal%2Fahmed%5Ftelili%5Ftii%5Fae%2FDocuments%2F360VistaSR) to help participants to format their submissions. In the test phase, participants should adhere to the "Docker File Submission Guideline (TBD)" and submit their docker files by  April 15, 2024 23:59 (AOE🌎), to the grand challenge email address: ahmed.telili@tii.ae and brahim.farhat@tii.ae
 
 ## Training and Validation
+
 **We provide a comprehensive framework designed to facilitate both training and testing processes for participants. However, participants are completely free to use their own code in place of our provided resources.**
+
 ### Requirement
 
 Use pip to install all requirements:
 
-```bash 
+```bash {"id":"01HNYG6Q4N4K1ZXJSGB07AT17X"}
 pip install -r requirements.txt
-
 ```
 
 ### Configuration
 
 Before training and testing, please make sure the fields in [config.yaml](src/config.yaml) is properly set.
 
-```yaml 
+```yaml {"id":"01HNYG6Q4N4K1ZXJSGB0JJP5D5"}
 log_dir: "output/FSRCNN"  # Directory for logs and outputs
 
 dataset:
@@ -160,14 +171,16 @@ learner:
     name: "CharbonnierLoss"   # Type of loss function to use
     params: {}                # Additional parameters for the loss function, if needed
 
+
 ```
 
 ### Train
 
 To train the model, use the following command:
 
-```bash 
+```bash {"id":"01HNYG6Q4N4K1ZXJSGB27PT4Q2"}
 python main.py --process train --config_path config.yml
+
 
 ```
 
@@ -175,9 +188,8 @@ python main.py --process train --config_path config.yml
 
 To generate testing outputs, use the following command:
 
-```bash 
+```bash {"id":"01HNYG6Q4PB76K6D6XD2HRZ43P"}
 python main.py --process test --config_path config.yml
-
 ```
 
 ## FAQ
