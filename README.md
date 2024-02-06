@@ -27,10 +27,10 @@
 
 - ✅ 2024.02.05 Release of train data (input and output images) and validation data (inputs only)
 - ✅ 2024.02.05 Validation server online
-- ✅ 2024.03.24 Challenge paper submission deadline
-- ✅ 2024.04.15 Final test data release (inputs only)
-- ✅ 2024.04.28 Docker file / code submission deadline
-- ✅ 2024.05.05 Final test results release to the participants and winner announcement
+- ✅ 2024.02.21 Final test data release
+- ✅ 2024.02.28 Docker file/code submission deadline
+- ✅ 2024.03.06 Final test results release and winner announcement
+- ✅ 2024.03.27 Challenge paper submission deadline
 - ✅ 2024.10.27 Workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu DHabi, UAE)
 
 ## Introduction
