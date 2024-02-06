@@ -18,15 +18,15 @@
 
 ---
 
-👉 [Track 1：360° Omnidirectional Video Super-Resolution and Quality Enhancement (X4)](#track-0000-omnidirectional-video-super-resolution-x4) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17458)
+👉 [Track 1：ICIP 2024 Challenge](#track-icip-2024-challenge) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17459)
 
-👉 [Track 2：360° Omnidirectional Video Super-Resolution and Quality Enhancement (X2)](#track-0000-omnidirectional-video-super-resolution-x2) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17459)
+👉 [Track 2：Innovation showcase (4x super resolution)](#track-2-innovation-showcase) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17458)
 
 ## 🚩 Track #1: ICIP 2024 challenge timeline 
 
-- ✅ 2024.02.05 Release of train data (input and output images) and validation data (inputs only)
+- ✅ 2024.02.05 Release of train data (input and output videos) and validation data (inputs only)
 - ✅ 2024.02.05 Validation server online
-- ✅ 2024.02.21 Final test data release
+- ✅ 2024.02.21 Test phase beginning
 - ✅ 2024.02.28 Docker file/code submission deadline
 - ✅ 2024.03.06 Final test results release and winner announcement
 - ✅ 2024.03.27 Challenge paper submission deadline
@@ -34,9 +34,10 @@
 
 ## 🚩 Track #2: Innovation showcase timeline  
 
-- ✅ 2024.02.05 Release of train data (input and output images) and validation data (inputs only)
+- ✅ 2024.02.05 Release of train data (input and output videos) and validation data (inputs only)
 - ✅ 2024.02.05 Validation server online
-- ✅ 2024.05.15 Final test data release
+- ✅ 2024.04.15 Validation test release (output videos)
+- ✅ 2024.04.15 Test phase beginning (output videos)
 - ✅ 2024.04.28 Docker file/code submission deadline
 - ✅ 2024.05.05 Final test results release and winner announcement
 - ✅ 2024.05.30 Award distribution 
