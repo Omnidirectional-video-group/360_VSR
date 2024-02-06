@@ -30,7 +30,7 @@
 - ✅ 2024.02.28 Docker file/code submission deadline
 - ✅ 2024.03.06 Final test results release and winner announcement
 - ✅ 2024.03.27 Challenge paper submission deadline
-- ✅ 2024.10.27 Workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu DHabi, UAE)
+- ✅ 2024.10.27 Workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu Dhabi, UAE)
 
 ## 🚩 Track #2: Innovation showcase timeline  
 
