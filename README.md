@@ -18,9 +18,9 @@
 
 ---
 
-👉 [Track 1：ICIP 2024 Challenge (2x super resolution)](#track-icip-2024-challenge) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17459)
+👉 [Track 1：ICIP 2024 Challenge (2x super resolution and quality enhancement)](#track-icip-2024-challenge) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17459)
 
-👉 [Track 2：Innovation showcase (4x super resolution)](#track-2-innovation-showcase) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17458)
+👉 [Track 2：Innovation showcase (4x super resolution and quality enhancement)](#track-2-innovation-showcase) **|** [Codalab server](https://codalab.lisn.upsaclay.fr/competitions/17458)
 
 ## 🚩 Track #1: ICIP 2024 challenge timeline 
 
