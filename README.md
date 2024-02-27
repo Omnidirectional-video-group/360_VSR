@@ -180,7 +180,7 @@ learner:
 To train the model, use the following command:
 
 ```bash {"id":"01HNYG6Q4N4K1ZXJSGB27PT4Q2"}
-python main.py --process train --config_path config.yml
+python main.py --process train --config_path src/config.yml
 
 
 ```
@@ -190,7 +190,7 @@ python main.py --process train --config_path config.yml
 To generate testing outputs, use the following command:
 
 ```bash {"id":"01HNYG6Q4PB76K6D6XD2HRZ43P"}
-python main.py --process test --config_path config.yml
+python main.py --process test --config_path src/config.yml
 ```
 
 ## FAQ
