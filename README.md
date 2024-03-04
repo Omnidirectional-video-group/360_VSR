@@ -27,17 +27,17 @@
 - ✅ 2024.02.05 Release of train data (input and output videos) and validation data (inputs only)
 - ✅ 2024.02.05 Validation server online
 - ✅ 2024.02.21 Test phase beginning
-- ✅ 2024.02.28 Docker file/code submission deadline
-- ✅ 2024.03.06 Final test results release and winner announcement
-- ✅ 2024.03.27 Challenge paper submission deadline
+- ✅ 2024.03.07 Docker file/code submission deadline
+- ✅ 2024.03.13 Final test results release and winner announcement
+- ✅ 2024.04.03 Challenge paper submission deadline
 - ✅ 2024.10.27 Workshop days, results and award ceremony ([ICIP 2024](https://2024.ieeeicip.org/), Abu Dhabi, UAE)
 
 ## 🚩 Track #2: Innovation showcase timeline  
 
 - ✅ 2024.02.05 Release of train data (input and output videos) and validation data (inputs only)
 - ✅ 2024.02.05 Validation server online
-- ✅ 2024.04.15 Validation test release (output videos)
-- ✅ 2024.04.15 Test phase beginning (output videos)
+- ✅ 2024.04.15 Validation set release (output videos)
+- ✅ 2024.04.15 Test phase beginning 
 - ✅ 2024.04.28 Docker file/code submission deadline
 - ✅ 2024.05.05 Final test results release and winner announcement
 - ✅ 2024.05.30 Award distribution 
