@@ -3,7 +3,6 @@ Module Description:
 
 This script introduces learner
 
-
 Author:
 
 Ahmed Telili
