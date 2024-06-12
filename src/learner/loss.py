@@ -32,7 +32,6 @@ class CharbonnierLoss(nn.Module):
         return loss
 
 
-
 def r1_penalty(real_pred, real_img):
     """R1 regularization for discriminator. The core idea is to
         penalize the gradient on real data alone: when the
@@ -103,12 +102,16 @@ def gradient_penalty_loss(discriminator, real_data, fake_data, weight=None):
 
 
 
+
+
 """
 # ============================================
 # SSIM loss
 # https://github.com/Po-Hsun-Su/pytorch-ssim
 # ============================================
 """
+
+
 
 
 def gaussian(window_size, sigma):
