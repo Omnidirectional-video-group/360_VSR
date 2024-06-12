@@ -3,7 +3,6 @@ Module Description:
  
 This script defines the saver class which save and load the trained models
  
- 
 Author:
  
 Ahmed Telili
