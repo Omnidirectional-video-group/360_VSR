@@ -283,32 +283,3 @@ class StandardLearner():
             print(f"Average WS-PSNR: {average_wspnsr}")
 
         print(f"Upscaled images are saved in {upscaled_dir}")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
