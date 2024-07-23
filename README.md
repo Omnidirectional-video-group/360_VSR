@@ -1,4 +1,4 @@
-# ICIP 2024: 360° Video Super-Resolution and Quality Enhancement Challenge
+# 360° Video Super-Resolution and Quality Enhancement Challenge
 
 <!-- <img title="" src="/imgs/mark.png" alt="" data-align="center"> -->
 
